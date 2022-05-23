@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ganodermaking</groupId>
+	<artifactId>learning-java</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>learning-java</name>
+	<description>Demo project for Spring Boot</description>
+	<packaging>pom</packaging>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<springboot.version>2.6.6</springboot.version>
+
+		<maven.compiler.version>3.10.1</maven.compiler.version>
+		<maven.deploy.version>2.8.2</maven.deploy.version>
+
+		<projectlombok.version>1.16.10</projectlombok.version>
+		<apache.dubbo.version>3.0.7</apache.dubbo.version>
+		<apache.zookeeper.version>3.8.0</apache.zookeeper.version>
+		<apache.curator.version>5.2.1</apache.curator.version>
+	</properties>
+
+	<modules>
+		<module>learning-api</module>
+		<module>learning-api-server</module>
+    </modules>
+
+	<profiles>
+		<!--测试环境-->
+		<profile>
+			<id>qa</id>
+			<properties>
+				<profiles.activation>qa</profiles.activation>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<!--正式环境-->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profiles.activation>prod</profiles.activation>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven.deploy.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
